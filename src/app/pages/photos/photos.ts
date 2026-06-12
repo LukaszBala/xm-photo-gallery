@@ -3,6 +3,7 @@ import { PhotosService } from '../../services/photos.service';
 import { PhotoGridComponent } from '../../components/photo-grid/photo-grid';
 import { Photo } from '../../models/photo.model';
 import { MatButtonModule } from '@angular/material/button';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-photos-page',
@@ -12,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class PhotosPageComponent implements OnInit {
   private readonly photosService = inject(PhotosService);
+  private readonly favoritesService = inject(FavoritesService);
 
   readonly photos = this.photosService.photos;
   readonly loading = this.photosService.loading;
@@ -22,7 +24,7 @@ export class PhotosPageComponent implements OnInit {
   }
 
   onPhotoClick(photo: Photo): void {
-    // TODO:
+    this.favoritesService.addToFavorites(photo);
   }
 
   loadMore(): void {

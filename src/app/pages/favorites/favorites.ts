@@ -1,8 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FavoritesService } from '../../services/favorites.service';
+import { PhotoGridComponent } from '../../components/photo-grid/photo-grid';
+import { Photo } from '../../models/photo.model';
 
 @Component({
   selector: 'app-favorites-page',
-  standalone: true,
-  template: '<p>Favorites page</p>',
+  imports: [PhotoGridComponent],
+  templateUrl: './favorites.html',
+  styleUrl: './favorites.scss',
 })
-export class FavoritesPageComponent {}
+export class FavoritesPageComponent implements OnInit {
+  private readonly favoritesService = inject(FavoritesService);
+  private readonly router = inject(Router);
+
+  readonly favorites = this.favoritesService.favorites;
+  readonly loading = this.favoritesService.loading;
+
+  ngOnInit(): void {
+    this.favoritesService.loadFavorites();
+  }
+
+  onPhotoClick(photo: Photo): void {
+    this.router.navigate(['/photos', photo.id]);
+  }
+}

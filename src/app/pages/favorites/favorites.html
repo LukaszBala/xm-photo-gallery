@@ -1,0 +1,14 @@
+<h2 class="page__title">Favorites</h2>
+@if (loading()) {
+<app-photo-grid
+  [photos]="[]"
+  [loading]="true"
+  (photoClick)="onPhotoClick($event)"
+/>
+} @else if (favorites().length === 0) {
+<p class="page__subtitle">
+  No favorites yet. Go to Photos and click some images.
+</p>
+} @else {
+<app-photo-grid [photos]="favorites()" (photoClick)="onPhotoClick($event)" />
+}

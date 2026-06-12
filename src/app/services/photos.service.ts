@@ -1,4 +1,5 @@
-import { Injectable, signal, inject } from '@angular/core';
+import { Injectable, signal, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { Photo } from '../models/photo.model';
 import { PhotosApi } from '../api/photos.api';
@@ -6,6 +7,7 @@ import { PhotosApi } from '../api/photos.api';
 @Injectable({ providedIn: 'root' })
 export class PhotosService {
   private readonly api = inject(PhotosApi);
+  private readonly destroyRef = inject(DestroyRef);
 
   private readonly _photos = signal<Photo[]>([]);
   private readonly _loading = signal(false);
@@ -33,6 +35,7 @@ export class PhotosService {
           this._loading.set(false);
         }),
       )
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
 
