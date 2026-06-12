@@ -1,0 +1,16 @@
+<h2 class="page__title">All Photos</h2>
+<p class="page__subtitle">Click a photo to add it to your favorites.</p>
+<app-photo-grid
+  [photos]="photos()"
+  [loading]="loading()"
+  (photoClick)="onPhotoClick($event)"
+/>
+<div class="photos-page__footer">
+  @if (hasMore()) {
+  <button mat-stroked-button (click)="loadMore()" [disabled]="loading()">
+    Load more
+  </button>
+  } @else {
+  <p class="page__subtitle">Nothing to load (hit the limit) :)</p>
+  }
+</div>

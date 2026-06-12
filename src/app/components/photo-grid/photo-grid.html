@@ -1,0 +1,17 @@
+<div class="photo-grid">
+  @for (photo of photos(); track photo.id) {
+  <mat-card class="photo-grid__card" (click)="onCardClick(photo)" matRipple>
+    <img
+      class="photo-grid__image"
+      mat-card-image
+      [src]="photo.thumbnailUrl"
+      [alt]="photo.title"
+      loading="lazy"
+    />
+  </mat-card>
+  } @if (loading()) {
+  <div class="photo-grid__spinner">
+    <mat-spinner diameter="40" />
+  </div>
+  }
+</div>

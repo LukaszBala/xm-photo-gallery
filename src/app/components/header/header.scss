@@ -1,0 +1,23 @@
+.header {
+  justify-content: center;
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__link {
+    &--active {
+      background: var(--mat-sys-primary-fixed-dim);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header__nav {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
