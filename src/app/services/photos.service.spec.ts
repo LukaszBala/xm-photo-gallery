@@ -3,8 +3,9 @@ import { TestBed } from '@angular/core/testing';
 import { of, throwError, delay, Observable } from 'rxjs';
 import { PhotosService } from './photos.service';
 import { PhotosApi, PhotosPage } from '../api';
+import { API_DELAY_JITTER_MS, API_DELAY_MIN_MS } from '../constants';
 
-const API_DELAY = 200;
+const API_DELAY = API_DELAY_MIN_MS + API_DELAY_JITTER_MS + 100;
 
 function makePageResult(
   startId: number,

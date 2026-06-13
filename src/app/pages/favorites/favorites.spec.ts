@@ -12,25 +12,17 @@ function makePhoto(id: number): Photo {
 
 describe('FavoritesPageComponent', () => {
   let fixture: ComponentFixture<FavoritesPageComponent>;
-  let favoritesServiceSpy: {
-    favorites: ReturnType<typeof signal<Photo[]>>;
-    loading: ReturnType<typeof signal<boolean>>;
-    loadFavorites: ReturnType<typeof vi.fn>;
-  };
   let router: Router;
 
   beforeEach(async () => {
-    favoritesServiceSpy = {
-      favorites: signal([]),
-      loading: signal(false),
-      loadFavorites: vi.fn(),
-    };
-
     await TestBed.configureTestingModule({
       imports: [FavoritesPageComponent],
       providers: [
         provideRouter([]),
-        { provide: FavoritesService, useValue: favoritesServiceSpy },
+        {
+          provide: FavoritesService,
+          useValue: { favorites: signal([]), loading: signal(false) },
+        },
       ],
     }).compileComponents();
 
@@ -38,12 +30,7 @@ describe('FavoritesPageComponent', () => {
     router = TestBed.inject(Router);
   });
 
-  it('calls loadFavorites on init', async () => {
-    await fixture.whenStable();
-    expect(favoritesServiceSpy.loadFavorites).toHaveBeenCalledTimes(1);
-  });
-
-  it('navigates to /photos/:id on onPhotoClick', async () => {
+  it('navigates to /photos/:id on onPhotoClick', () => {
     const navigateSpy = vi.spyOn(router, 'navigate');
     fixture.componentInstance.onPhotoClick(makePhoto(5));
     expect(navigateSpy).toHaveBeenCalledWith(['/photos', 5]);

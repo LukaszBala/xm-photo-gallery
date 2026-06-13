@@ -1,11 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
-import { of, throwError, Subject, delay } from 'rxjs';
+import { of, throwError, delay } from 'rxjs';
 import { FavoritesService } from './favorites.service';
 import { FavoritesApi } from '../api';
 import { Photo } from '../models';
+import { API_DELAY_JITTER_MS, API_DELAY_MIN_MS } from '../constants';
 
-const API_DELAY = 200;
+const API_DELAY = API_DELAY_MIN_MS + API_DELAY_JITTER_MS + 100;
 
 function makePhoto(id: number): Photo {
   return { id, title: `Photo ${id}`, thumbnailUrl: '', fullUrl: '' };
@@ -17,7 +18,10 @@ function asyncFavorites(photos: Photo[]) {
 
 describe('FavoritesService', () => {
   let service: FavoritesService;
-  let apiSpy: { getFavorites: ReturnType<typeof vi.fn>; saveFavorites: ReturnType<typeof vi.fn> };
+  let apiSpy: {
+    getFavorites: ReturnType<typeof vi.fn>;
+    saveFavorites: ReturnType<typeof vi.fn>;
+  };
 
   beforeEach(() => {
     vi.useFakeTimers();
@@ -37,19 +41,24 @@ describe('FavoritesService', () => {
     vi.useRealTimers();
   });
 
-  it('starts with empty favorites and not loading', () => {
+  it('loads favorites on construction', () => {
+    expect(apiSpy.getFavorites).toHaveBeenCalledTimes(1);
+  });
+
+  it('starts with loading true while initial request is in-flight', () => {
+    expect(service.loading()).toBe(true);
+  });
+
+  it('starts with empty favorites', () => {
     expect(service.favorites()).toEqual([]);
-    expect(service.loading()).toBe(false);
   });
 
   describe('loadFavorites', () => {
-    it('sets loading to true while request is in-flight', () => {
-      service.loadFavorites();
-      expect(service.loading()).toBe(true);
-    });
-
     it('populates favorites from API after delay', () => {
-      apiSpy.getFavorites.mockReturnValue(asyncFavorites([makePhoto(1), makePhoto(2)]));
+      vi.advanceTimersByTime(API_DELAY); // flush constructor call
+      apiSpy.getFavorites.mockReturnValue(
+        asyncFavorites([makePhoto(1), makePhoto(2)]),
+      );
       service.loadFavorites();
       vi.advanceTimersByTime(API_DELAY);
       expect(service.favorites()).toHaveLength(2);
@@ -57,23 +66,19 @@ describe('FavoritesService', () => {
     });
 
     it('clears loading flag after successful load', () => {
-      apiSpy.getFavorites.mockReturnValue(asyncFavorites([makePhoto(1)]));
-      service.loadFavorites();
       vi.advanceTimersByTime(API_DELAY);
       expect(service.loading()).toBe(false);
     });
 
     it('clears loading flag on API error', () => {
+      vi.advanceTimersByTime(API_DELAY); // flush constructor call
       apiSpy.getFavorites.mockReturnValue(throwError(() => new Error('fail')));
       service.loadFavorites();
       expect(service.loading()).toBe(false);
     });
 
     it('does not call API while already loading', () => {
-      const pending = new Subject<Photo[]>();
-      apiSpy.getFavorites.mockReturnValue(pending.asObservable());
-      service.loadFavorites();
-      service.loadFavorites();
+      service.loadFavorites(); // loading is true from constructor call
       expect(apiSpy.getFavorites).toHaveBeenCalledTimes(1);
     });
   });

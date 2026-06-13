@@ -15,6 +15,10 @@ export class FavoritesService {
   private readonly favoritesApi = inject(FavoritesApi);
   private readonly destroyRef = inject(DestroyRef);
 
+  constructor() {
+    this.loadFavorites();
+  }
+
   private readonly _favorites = signal<Photo[]>([]);
   private readonly _loading = signal(false);
 
