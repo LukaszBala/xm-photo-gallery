@@ -1,6 +1,6 @@
 import { Injectable, signal, inject, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
+import { tap, catchError, of } from 'rxjs';
 import { Photo } from '../models/photo.model';
 import { PhotosApi } from '../api/photos.api';
 
@@ -33,6 +33,10 @@ export class PhotosService {
           this._currentPage.update((p) => p + 1);
           this._hasMore.set(hasMore);
           this._loading.set(false);
+        }),
+        catchError(() => {
+          this._loading.set(false);
+          return of(null);
         }),
       )
       .pipe(takeUntilDestroyed(this.destroyRef))

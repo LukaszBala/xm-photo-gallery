@@ -5,12 +5,16 @@
   [loading]="loading()"
   (photoClick)="onPhotoClick($event)"
 />
+@if (hasMore()) {
+<div
+  appInfiniteScroll
+  [intersectionMargin]="{ bottom: 200 }"
+  (intersectionChange)="onIntersectionChange($event)"
+></div>
+} @else {
 <div class="photos-page__footer">
-  @if (hasMore()) {
-  <button mat-stroked-button (click)="loadMore()" [disabled]="loading()">
-    Load more
-  </button>
-  } @else {
-  <p class="page__subtitle">Nothing to load (hit the limit) :)</p>
-  }
+  <p class="page__subtitle">
+    Nothing to load (hit the artificial limit - can be changed in photos api) :)
+  </p>
 </div>
+}

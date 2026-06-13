@@ -1,0 +1,23 @@
+@if (loading()) {
+<div class="photo-detail photo-detail--loading">
+  <mat-spinner diameter="48" />
+</div>
+} @else if (photo(); as p) {
+<div class="photo-detail">
+  <img class="photo-detail__image" [src]="p.fullUrl" [alt]="p.title" />
+  <div class="photo-detail__actions">
+    @if (isFavorite()) {
+    <button mat-stroked-button color="warn" (click)="removeFromFavorites()">
+      Remove from Favorites
+    </button>
+    }
+  </div>
+</div>
+} @else {
+<div class="photo-detail photo-detail--error">
+  <p class="page__subtitle">
+    Could not load this photo. It may no longer exist.
+  </p>
+  <button mat-stroked-button (click)="goBack()">Back to Favorites</button>
+</div>
+}

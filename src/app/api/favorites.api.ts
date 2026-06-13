@@ -11,6 +11,7 @@ export class FavoritesApi {
     const parsed = JSON.parse(
       localStorage.getItem(FAVORITES_STORAGE_KEY) ?? '[]',
     );
+
     const ids = Array.isArray(parsed)
       ? parsed.filter(
           (item): item is number =>

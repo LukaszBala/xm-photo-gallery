@@ -6,7 +6,7 @@ import {
   DestroyRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
+import { tap, catchError, of } from 'rxjs';
 import { Photo } from '../models/photo.model';
 import { FavoritesApi } from '../api/favorites.api';
 
@@ -36,6 +36,10 @@ export class FavoritesService {
         tap((photos) => {
           this._favorites.set(photos);
           this._loading.set(false);
+        }),
+        catchError(() => {
+          this._loading.set(false);
+          return of([]);
         }),
         takeUntilDestroyed(this.destroyRef),
       )

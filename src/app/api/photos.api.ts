@@ -9,7 +9,7 @@ export interface PhotosPage {
 }
 
 const PAGE_SIZE = 12;
-const TOTAL_PHOTOS = 100;
+const TOTAL_PHOTOS = 500;
 
 @Injectable({ providedIn: 'root' })
 export class PhotosApi {
