@@ -42,8 +42,4 @@ export class PhotosService {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe();
   }
-
-  getPhotoById(id: number): Photo | undefined {
-    return this._photos().find((p) => p.id === id);
-  }
 }

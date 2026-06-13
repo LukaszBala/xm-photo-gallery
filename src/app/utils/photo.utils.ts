@@ -1,11 +1,23 @@
 import { Photo } from '../models/photo.model';
+import {
+  PHOTO_THUMBNAIL_WIDTH,
+  PHOTO_THUMBNAIL_HEIGHT,
+  PHOTO_FULL_WIDTH,
+  PHOTO_FULL_HEIGHT,
+} from '../const/photos';
 
 export function createPhoto(id: number): Photo {
+  // Guard against non-numeric ids: even though template literals would produce
+  // a valid URL with a string seed for picsum, just a architectural concept :)
+  if (typeof id !== 'number' || !Number.isFinite(id)) {
+    throw new TypeError(`createPhoto: id must be a finite number, got ${id}`);
+  }
+
   return {
     id,
     title: `Photo ${id}`,
-    thumbnailUrl: `https://picsum.photos/seed/${id}/400/300`,
-    fullUrl: `https://picsum.photos/seed/${id}/1200/800`,
+    thumbnailUrl: `https://picsum.photos/seed/${id}/${PHOTO_THUMBNAIL_WIDTH}/${PHOTO_THUMBNAIL_HEIGHT}`,
+    fullUrl: `https://picsum.photos/seed/${id}/${PHOTO_FULL_WIDTH}/${PHOTO_FULL_HEIGHT}`,
   };
 }
 
