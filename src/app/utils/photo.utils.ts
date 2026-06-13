@@ -4,7 +4,7 @@ import {
   PHOTO_THUMBNAIL_HEIGHT,
   PHOTO_FULL_WIDTH,
   PHOTO_FULL_HEIGHT,
-} from '../const/photos';
+} from '../consts/photos';
 
 export function createPhoto(id: number): Photo {
   // Guard against non-numeric ids: even though template literals would produce

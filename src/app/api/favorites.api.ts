@@ -3,7 +3,7 @@ import { Observable, of, delay } from 'rxjs';
 import { Photo } from '../models/photo.model';
 import { createPhotos } from '../utils/photo.utils';
 import { apiDelay } from '../utils/delay.utils';
-import { FAVORITES_STORAGE_KEY } from '../const/favorites';
+import { FAVORITES_STORAGE_KEY } from '../consts/favorites';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesApi {

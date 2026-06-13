@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { FavoritesApi } from './favorites.api';
 import { Photo } from '../models/photo.model';
-import { API_DELAY_MIN_MS, API_DELAY_JITTER_MS } from '../const/api';
-import { FAVORITES_STORAGE_KEY } from '../const/favorites';
+import { API_DELAY_MIN_MS, API_DELAY_JITTER_MS } from '../consts/api';
+import { FAVORITES_STORAGE_KEY } from '../consts/favorites';
 
 const STORAGE_KEY = FAVORITES_STORAGE_KEY;
 const FLUSH_MS = API_DELAY_MIN_MS + API_DELAY_JITTER_MS + 100;
@@ -69,18 +69,26 @@ describe('FavoritesApi', () => {
         { id: 2, title: 'Photo 2', thumbnailUrl: '', fullUrl: '' },
       ];
       api.saveFavorites(photos);
-      expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')).toEqual([1, 2]);
+      expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')).toEqual([
+        1, 2,
+      ]);
     });
 
     it('overwrites previously stored ids', () => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([5, 6]));
-      api.saveFavorites([{ id: 10, title: 'Photo 10', thumbnailUrl: '', fullUrl: '' }]);
-      expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')).toEqual([10]);
+      api.saveFavorites([
+        { id: 10, title: 'Photo 10', thumbnailUrl: '', fullUrl: '' },
+      ]);
+      expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')).toEqual([
+        10,
+      ]);
     });
 
     it('stores empty array when given no photos', () => {
       api.saveFavorites([]);
-      expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null')).toEqual([]);
+      expect(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null')).toEqual(
+        [],
+      );
     });
   });
 });

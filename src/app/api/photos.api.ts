@@ -3,7 +3,7 @@ import { Observable, of, delay } from 'rxjs';
 import { Photo } from '../models/photo.model';
 import { createPhoto } from '../utils/photo.utils';
 import { apiDelay } from '../utils/delay.utils';
-import { PHOTOS_PAGE_SIZE, PHOTOS_TOTAL } from '../const/photos';
+import { PHOTOS_PAGE_SIZE, PHOTOS_TOTAL } from '../consts/photos';
 
 export interface PhotosPage {
   photos: Photo[];
