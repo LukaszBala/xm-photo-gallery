@@ -1,5 +1,5 @@
 import { Component, input, output } from '@angular/core';
-import { Photo } from '../../models/photo.model';
+import { Photo } from '../../models';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';

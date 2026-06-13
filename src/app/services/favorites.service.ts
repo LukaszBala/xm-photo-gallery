@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap, catchError, of } from 'rxjs';
-import { Photo } from '../models/photo.model';
-import { FavoritesApi } from '../api/favorites.api';
+import { Photo } from '../models';
+import { FavoritesApi } from '../api';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesService {

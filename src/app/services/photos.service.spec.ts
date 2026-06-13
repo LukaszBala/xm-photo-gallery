@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { of, throwError, delay, Observable } from 'rxjs';
 import { PhotosService } from './photos.service';
-import { PhotosApi, PhotosPage } from '../api/photos.api';
+import { PhotosApi, PhotosPage } from '../api';
 
 const API_DELAY = 200;
 

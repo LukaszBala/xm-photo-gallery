@@ -2,9 +2,9 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { FavoritesApi } from './favorites.api';
-import { Photo } from '../models/photo.model';
-import { API_DELAY_MIN_MS, API_DELAY_JITTER_MS } from '../consts/api';
-import { FAVORITES_STORAGE_KEY } from '../consts/favorites';
+import { Photo } from '../models';
+import { API_DELAY_MIN_MS, API_DELAY_JITTER_MS } from '../constants';
+import { FAVORITES_STORAGE_KEY } from '../constants';
 
 const STORAGE_KEY = FAVORITES_STORAGE_KEY;
 const FLUSH_MS = API_DELAY_MIN_MS + API_DELAY_JITTER_MS + 100;

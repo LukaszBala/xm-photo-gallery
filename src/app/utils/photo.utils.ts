@@ -1,10 +1,10 @@
-import { Photo } from '../models/photo.model';
+import { Photo } from '../models';
 import {
   PHOTO_THUMBNAIL_WIDTH,
   PHOTO_THUMBNAIL_HEIGHT,
   PHOTO_FULL_WIDTH,
   PHOTO_FULL_HEIGHT,
-} from '../consts/photos';
+} from '../constants';
 
 export function createPhoto(id: number): Photo {
   // Guard against non-numeric ids: even though template literals would produce

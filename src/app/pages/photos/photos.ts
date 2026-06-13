@@ -1,11 +1,11 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { combineLatest, debounceTime, Subject, tap } from 'rxjs';
-import { PhotoGridComponent } from '../../components/photo-grid/photo-grid';
-import { InfiniteScrollDirective } from '../../directives/infinite-scroll.directive';
-import { Photo } from '../../models/photo.model';
-import { FavoritesService } from '../../services/favorites.service';
-import { PhotosService } from '../../services/photos.service';
+import { PhotoGridComponent } from '../../components';
+import { InfiniteScrollDirective } from '../../directives';
+import { Photo } from '../../models';
+import { FavoritesService } from '../../services';
+import { PhotosService } from '../../services';
 
 @Component({
   selector: 'app-photos-page',

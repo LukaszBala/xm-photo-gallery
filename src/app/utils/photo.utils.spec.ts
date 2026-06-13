@@ -5,7 +5,7 @@ import {
   PHOTO_THUMBNAIL_HEIGHT,
   PHOTO_FULL_WIDTH,
   PHOTO_FULL_HEIGHT,
-} from '../consts/photos';
+} from '../constants';
 
 describe('createPhoto', () => {
   it('creates a photo with the given id', () => {

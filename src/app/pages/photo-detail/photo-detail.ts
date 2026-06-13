@@ -2,8 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { switchMap, map, tap, filter, catchError, of } from 'rxjs';
-import { PhotosApi } from '../../api/photos.api';
-import { FavoritesService } from '../../services/favorites.service';
+import { PhotosApi } from '../../api';
+import { FavoritesService } from '../../services';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 

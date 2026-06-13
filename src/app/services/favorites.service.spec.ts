@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { of, throwError, Subject, delay } from 'rxjs';
 import { FavoritesService } from './favorites.service';
-import { FavoritesApi } from '../api/favorites.api';
-import { Photo } from '../models/photo.model';
+import { FavoritesApi } from '../api';
+import { Photo } from '../models';
 
 const API_DELAY = 200;
 

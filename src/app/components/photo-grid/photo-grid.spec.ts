@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { Photo } from '../../models/photo.model';
+import { Photo } from '../../models';
 import { PhotoGridComponent } from './photo-grid';
 
 function makePhoto(id: number): Photo {

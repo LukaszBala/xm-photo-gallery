@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
-import { Photo } from '../models/photo.model';
-import { createPhotos } from '../utils/photo.utils';
-import { apiDelay } from '../utils/delay.utils';
-import { FAVORITES_STORAGE_KEY } from '../consts/favorites';
+import { Photo } from '../models';
+import { createPhotos } from '../utils';
+import { apiDelay } from '../utils';
+import { FAVORITES_STORAGE_KEY } from '../constants';
 
 @Injectable({ providedIn: 'root' })
 export class FavoritesApi {

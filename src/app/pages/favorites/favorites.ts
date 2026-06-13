@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FavoritesService } from '../../services/favorites.service';
-import { PhotoGridComponent } from '../../components/photo-grid/photo-grid';
-import { Photo } from '../../models/photo.model';
+import { FavoritesService } from '../../services';
+import { PhotoGridComponent } from '../../components';
+import { Photo } from '../../models';
 
 @Component({
   selector: 'app-favorites-page',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, delay } from 'rxjs';
-import { Photo } from '../models/photo.model';
-import { createPhoto } from '../utils/photo.utils';
-import { apiDelay } from '../utils/delay.utils';
-import { PHOTOS_PAGE_SIZE, PHOTOS_TOTAL } from '../consts/photos';
+import { Photo } from '../models';
+import { createPhoto } from '../utils';
+import { apiDelay } from '../utils';
+import { PHOTOS_PAGE_SIZE, PHOTOS_TOTAL } from '../constants';
 
 export interface PhotosPage {
   photos: Photo[];

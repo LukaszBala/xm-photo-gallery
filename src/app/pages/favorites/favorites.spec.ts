@@ -2,8 +2,8 @@ import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { Photo } from '../../models/photo.model';
-import { FavoritesService } from '../../services/favorites.service';
+import { Photo } from '../../models';
+import { FavoritesService } from '../../services';
 import { FavoritesPageComponent } from './favorites';
 
 function makePhoto(id: number): Photo {

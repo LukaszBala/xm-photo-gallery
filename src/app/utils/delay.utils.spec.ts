@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { API_DELAY_JITTER_MS, API_DELAY_MIN_MS } from '../consts/api';
+import { API_DELAY_JITTER_MS, API_DELAY_MIN_MS } from '../constants';
 import { apiDelay } from './delay.utils';
 
 describe('apiDelay', () => {

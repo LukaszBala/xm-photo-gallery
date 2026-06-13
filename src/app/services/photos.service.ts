@@ -1,8 +1,8 @@
 import { Injectable, signal, inject, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap, catchError, of } from 'rxjs';
-import { Photo } from '../models/photo.model';
-import { PhotosApi } from '../api/photos.api';
+import { Photo } from '../models';
+import { PhotosApi } from '../api';
 
 @Injectable({ providedIn: 'root' })
 export class PhotosService {

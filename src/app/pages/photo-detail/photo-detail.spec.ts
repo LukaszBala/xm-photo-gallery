@@ -7,8 +7,8 @@ import {
 } from '@angular/router';
 import { of } from 'rxjs';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { PhotosApi } from '../../api/photos.api';
-import { FavoritesService } from '../../services/favorites.service';
+import { PhotosApi } from '../../api';
+import { FavoritesService } from '../../services';
 import { PhotoDetailPageComponent } from './photo-detail';
 
 describe('PhotoDetailPageComponent', () => {

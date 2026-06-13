@@ -2,8 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { PhotosApi } from './photos.api';
-import { API_DELAY_MIN_MS, API_DELAY_JITTER_MS } from '../consts/api';
-import { PHOTOS_PAGE_SIZE, PHOTOS_TOTAL } from '../consts/photos';
+import { API_DELAY_MIN_MS, API_DELAY_JITTER_MS } from '../constants';
+import { PHOTOS_PAGE_SIZE, PHOTOS_TOTAL } from '../constants';
 
 const FLUSH_MS = API_DELAY_MIN_MS + API_DELAY_JITTER_MS + 100;
 
