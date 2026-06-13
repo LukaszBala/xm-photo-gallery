@@ -51,9 +51,11 @@ export class FavoritesService {
   }
 
   toggleFavorite(photo: Photo): void {
-    this.isFavorite(photo.id)
-      ? this.removeFromFavorites(photo.id)
-      : this.addToFavorites(photo);
+    if (this.isFavorite(photo.id)) {
+      this.removeFromFavorites(photo.id);
+    } else {
+      this.addToFavorites(photo);
+    }
   }
 
   addToFavorites(photo: Photo): void {
