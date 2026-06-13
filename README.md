@@ -1,27 +1,57 @@
-# GalleryTemplate
+# Photo Gallery
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
+An Angular photo gallery application with infinite scroll, photo detail view, and favorites management.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node.js 22.22.3+ or 24.15.0+ or 26.0.0+
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+```
+
+Husky git hooks are installed automatically as part of `npm install`.
+
+## Development
+
+```bash
+npm start
+```
+
+The app will be available at **http://localhost:4200**.
+
+| Page         | URL                              |
+| ------------ | -------------------------------- |
+| Gallery      | http://localhost:4200/photos     |
+| Favorites    | http://localhost:4200/favorites  |
+| Photo detail | http://localhost:4200/photos/:id |
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Running unit tests
+Output is written to `dist/`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Testing
 
-## Running end-to-end tests
+Runs all unit tests once using [Vitest](https://vitest.dev). To watch for changes:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm test
+```
 
-## Further help
+## Linting
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm run lint
+```
+
+Runs [ESLint](https://eslint.org) across all TypeScript and HTML source files.
+
+## Git hooks
+
+A pre-commit hook runs lint and tests automatically before every commit. The commit is blocked if either fails.
